@@ -45,7 +45,7 @@ def get_crazy_functions():
     from crazy_functions.Latex_Function_Wrap import PDF_Localize
     from crazy_functions.Internet_GPT import 连接网络回答问题
     from crazy_functions.Internet_GPT_Wrap import NetworkGPT_Wrap
-    from crazy_functions.RAG_QA import 知识库回答
+    from crazy_functions.RAG_QA import RAG_QA_GEN
     from crazy_functions.Doc2x import doc2x
 
     function_plugins = {
@@ -67,7 +67,8 @@ def get_crazy_functions():
             "Color": "stop",
             "AsButton": True,
             "Info": "知识库回答 | 输入参数为问题",
-            "Function": HotReload(知识库回答),
+            "Function": None,
+            "Class": RAG_QA_GEN
         },
         # "载入对话历史存档（先上传存档或输入路径）": {
         #     "Group": "对话",

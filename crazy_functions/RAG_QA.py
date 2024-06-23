@@ -26,19 +26,16 @@ def 知识库回答(
         [
             "What this can do?\n函数插件功能？",
             "It will answer you questions base the established knowledge base, which leads to precise and correct answers. Function Plugin Contributors : Menghuan1918. \
-            \n插件将会根据知识库中的文件进行精准正确的回答。函数插件贡献者: Menghuan1918",
+            \n插件将会根据知识库中的文件进行精准正确的回答。函数插件贡献者: Menghuan1918\
+            \n\
+            \n**Search for question in the knowledge base now, please wait a moment.**",
         ]
     )
     yield from update_ui(chatbot=chatbot, history=history)  # 刷新界面
-    # 根据问题生成引用
-    i_say_show_user = (
-        f"Get the question: {txt} \n Start to search the answer in the knowledge base."
-    )
-    gpt_say = "[Local Message] Get it, searching now. Please wait a moment."
-    chatbot.append([i_say_show_user, gpt_say])
-    yield from update_ui(chatbot=chatbot, history=history)
     history_6 = history[-6:]
-    knowledge = RAG_QA(query=txt, history=history_6, Config=Config)
+    knowledge = RAG_QA(
+        query=txt, history=history_6, Config=Config, Prompt_mode=plugin_kwargs
+    )
     i_say_show_user = txt
     # 不准用户乱动温度！
     llm_kwargs["temperature"] = 0.8
@@ -48,7 +45,45 @@ def 知识库回答(
         llm_kwargs=llm_kwargs,
         chatbot=chatbot,
         history=history,
-        sys_prompt=knowledge
+        sys_prompt=knowledge,
     )
     history.append(gpt_say)
     yield from update_ui(chatbot=chatbot, history=history)  # 刷新界面 # 界面更新
+
+
+class RAG_QA_GEN(GptAcademicPluginTemplate):
+    def __init__(self):
+        pass
+
+    def define_arg_selection_menu(self):
+        gui_definition = {
+            "Type_of_Mode": ArgProperty(
+                title="Answer Type",
+                options=[
+                    "Default",
+                    "Only knowledges",
+                ],
+                default_value="Default",
+                description="By default, questions are answered accurately based on the content of the knowledge base, but in the 'Only knowledges' model, questions are not answered directly, and the user is guided to solve the problem on their own.默认情况下会根据知识库内容精准回答问题，'Only knowledges'模型下将不会直接回答问题，而是引导用户自己解决问题。",
+                type="dropdown",
+            ).model_dump_json(),
+        }
+        return gui_definition
+
+    def execute(
+        txt, llm_kwargs, plugin_kwargs, chatbot, history, system_prompt, user_request
+    ):
+        options = [
+            "Default",
+            "Only knowledges",
+        ]
+        plugin_kwargs = options.index(plugin_kwargs["Type_of_Mode"])
+        yield from  知识库回答(
+            txt,
+            llm_kwargs,
+            plugin_kwargs,
+            chatbot,
+            history,
+            system_prompt,
+            user_request,
+        )

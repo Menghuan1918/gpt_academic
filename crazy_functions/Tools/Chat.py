@@ -1,4 +1,4 @@
-from .Chat_Prompt import RAG, QUESTIONS
+from .Chat_Prompt import RAG, QUESTIONS, RAG2
 import re
 from .Chat_LLM import predict, get_text
 import logging
@@ -75,5 +75,7 @@ def RAG_QA(query, history, Config, Prompt_mode=0):
 
     if Prompt_mode == 0:
         Prompt = RAG.format(lists=Related)
+    elif Prompt_mode == 1:
+        Prompt = RAG2.format(lists=Related)
     
     return Prompt

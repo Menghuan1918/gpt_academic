@@ -10,7 +10,7 @@ from textwrap import dedent
 def get_core_functions():
     return {
 
-        "学术语料润色": {
+        "Academic corpus embellishment  学术语料润色": {
             # [1*] 前缀字符串，会被加在你的输入之前。例如，用来描述你的要求，例如翻译、解释代码、润色等等。
             #      这里填一个提示词字符串就行了，这里为了区分中英文情景搞复杂了一点
             "Prefix":   build_gpt_academic_masked_string_langbased(
@@ -38,7 +38,7 @@ def get_core_functions():
         },
 
 
-        "总结绘制脑图": {
+        "Summarizing Mapping    总结绘制脑图": {
             # 前缀，会被加在你的输入之前。例如，用来描述你的要求，例如翻译、解释代码、润色等等
             "Prefix":   '''"""\n\n''',
             # 后缀，会被加在你的输入之后。例如，配合前缀可以把你的输入内容用引号圈起来
@@ -60,7 +60,7 @@ def get_core_functions():
                     ```
 
                     注意：
-                    （1）使用中文
+                    （1）使用源语言
                     （2）节点名字使用引号包裹，如["Laptop"]
                     （3）`|` 和 `"`之间不要存在空格
                     （4）根据情况选择flowchart LR（从左到右）或者flowchart TD（从上到下）
@@ -68,7 +68,7 @@ def get_core_functions():
         },
 
 
-        "查找语法错误": {
+        "Finding Syntax Errors  查找语法错误": {
             "Prefix":   r"Help me ensure that the grammar and the spelling is correct. "
                         r"Do not try to polish the text, if no mistake is found, tell me that this paragraph is good. "
                         r"If you find grammar or spelling mistakes, please list mistakes you find in a two-column markdown table, "
@@ -89,13 +89,13 @@ def get_core_functions():
         },
 
 
-        "中译英": {
+        "Chinese to English     中译英": {
             "Prefix":   r"Please translate following sentence to English:" + "\n\n",
             "Suffix":   r"",
         },
 
 
-        "学术英中互译": {
+        "Academic English-Chinese Translation   学术英中互译": {
             "Prefix":   build_gpt_academic_masked_string_langbased(
                             text_show_chinese=
                                 r"I want you to act as a scientific English-Chinese translator, "
