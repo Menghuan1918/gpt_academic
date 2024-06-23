@@ -1,12 +1,21 @@
 import os, json; os.environ['no_proxy'] = '*' # 避免代理网络产生意外污染
 
 help_menu_description = \
-"""Github源代码开源[地址🚀](https://github.com/Menghuan1918/gpt_academic/tree/RAG)。
-</br></br>前端基于[binary-husky/gpt_academic](https://github.com/binary-husky/gpt_academic)修改而来。
+"""Github源代码开源[地址🚀](https://github.com/Menghuan1918/gpt_academic/tree/RAG)，遇到问题请在此处反馈。
+</br></br>前端基于[binary-husky/gpt_academic](https://github.com/binary-husky/gpt_academic)修改而来，但是RAGQA后端完全自主实现。
 </br></br>你可以在[🤗Huggingface](https://huggingface.co/Menghuan1918/slide-bge-reranker-v2-m3)中查看RAG后端使用的模型。
 </br></br>普通对话使用说明: 1. 输入问题; 2. 点击提交
-</br></br>基础功能区使用说明: 1. 输入文本; 2. 点击任意基础功能区按钮
-</br></br>函数插件区使用说明: 1. 输入路径/问题, 或者上传文件; 2. 点击任意函数插件区按钮
+</br>QA对话使用说明: 1. 输入问题; 2. 点击"Super QA 知识库问答"按钮
+</br>基础功能区使用说明: 1. 输入文本; 2. 点击任意基础功能区按钮
+</br>函数插件区使用说明: 1. 输入路径/问题, 或者上传文件; 2. 点击任意函数插件区按钮
+</br></br>
+Github source code is open source [here🚀](https://github.com/Menghuan1918/gpt_academic/tree/RAG). If you encounter any issues, please provide feedback here.
+</br></br>The frontend is modified based on [binary-husky/gpt_academic](https://github.com/binary-husky/gpt_academic), but the backend is completely independently implemented.
+</br></br>You can view the model used by the RAG backend on [🤗Huggingface](https://huggingface.co/Menghuan1918/slide-bge-reranker-v2-m3).
+</br>Instructions for normal conversation: 1. Enter a question; 2. Click submit
+</br>Instructions for QA conversation: 1. Enter a question; 2. Click the "Super QA Knowledge Base Q&A" button
+</br>Instructions for basic functionality area: 1. Enter text; 2. Click any button in the basic functionality area
+</br>Instructions for function plugin area: 1. Enter a path/question, or upload a file; 2. Click any button in the function plugin area
 """
 
 def enable_log(PATH_LOGGING):
@@ -40,7 +49,10 @@ def main():
     from themes.theme import adjust_theme, advanced_css, theme_declaration, js_code_clear, js_code_reset, js_code_show_or_hide, js_code_show_or_hide_group2
     from themes.theme import js_code_for_css_changing, js_code_for_toggle_darkmode, js_code_for_persistent_cookie_init
     from themes.theme import load_dynamic_theme, to_cookie_str, from_cookie_str, assign_user_uuid
-    title_html = f"<h1 align=\"center\">DocScholar 0.0.3</h1>{theme_declaration}"
+    title_html = f"""<h1 align="center">
+<== See 'Help' for more<br>
+DocScholar 0.0.3
+</h1>{theme_declaration}"""
 
     # 对话、日志记录
     enable_log(PATH_LOGGING)

@@ -46,6 +46,7 @@ def get_crazy_functions():
     from crazy_functions.Internet_GPT import 连接网络回答问题
     from crazy_functions.Internet_GPT_Wrap import NetworkGPT_Wrap
     from crazy_functions.RAG_QA import 知识库回答
+    from crazy_functions.Doc2x import doc2x
 
     function_plugins = {
         # "虚空终端": {
@@ -54,14 +55,14 @@ def get_crazy_functions():
         #     "AsButton": True,
         #     "Function": HotReload(虚空终端),
         # },
-        "解析整个Python项目": {
+        "Parsing an entire Python project 解析整个Python项目": {
             "Group": "编程",
             "Color": "stop",
             "AsButton": True,
             "Info": "解析一个Python项目的所有源文件(.py) | 输入参数为路径",
             "Function": HotReload(解析一个Python项目),
         },
-        "Super QA\n知识库回答": {
+        "Super QA   知识库回答": {
             "Group": "对话",
             "Color": "stop",
             "AsButton": True,
@@ -88,7 +89,7 @@ def get_crazy_functions():
         #     "Info": "清除所有缓存文件，谨慎操作 | 不需要输入参数",
         #     "Function": HotReload(清除缓存),
         # },
-        "生成多种Mermaid图表(从当前对话或路径(.pdf/.md/.docx)中生产图表）": {
+        "Generate multiple flowcharts   生成多种流程图(从当前对话或路径(.pdf/.md/.docx)中生产图表）": {
             "Group": "对话",
             "Color": "stop",
             "AsButton": True,
@@ -96,7 +97,7 @@ def get_crazy_functions():
             "Function": None,
             "Class": Mermaid_Gen
         },
-        "批量总结Word文档": {
+        "Batch summary Word document    批量总结Word文档": {
             "Group": "学术",
             "Color": "stop",
             "AsButton": True,
@@ -218,14 +219,21 @@ def get_crazy_functions():
         #     "Info": "多线程解析并翻译此项目的源码 | 不需要输入参数",
         #     "Function": HotReload(解析项目本身),
         # },
-        "查互联网后回答": {
-            "Group": "对话",
+        "Translate PDF files    翻译PDF文档": {
+            "Group": "学术",
             "Color": "stop",
-            "AsButton": True,  # 加入下拉菜单中
-            # "Info": "连接网络回答问题（需要访问谷歌）| 输入参数是一个问题",
-            "Function": HotReload(连接网络回答问题),
-            "Class": NetworkGPT_Wrap     # 新一代插件需要注册Class
+            "AsButton": True,
+            "Info": "翻译PDF文档为中文 | 输入参数为路径",
+            "Function": HotReload(doc2x),
         },
+        # "查互联网后回答": {
+        #     "Group": "对话",
+        #     "Color": "stop",
+        #     "AsButton": True,  # 加入下拉菜单中
+        #     # "Info": "连接网络回答问题（需要访问谷歌）| 输入参数是一个问题",
+        #     "Function": HotReload(连接网络回答问题),
+        #     "Class": NetworkGPT_Wrap     # 新一代插件需要注册Class
+        # },
         # "历史上的今天": {
         #     "Group": "对话",
         #     "Color": "stop",
