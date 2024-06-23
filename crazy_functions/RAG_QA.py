@@ -48,7 +48,7 @@ def 知识库回答(
         llm_kwargs=llm_kwargs,
         chatbot=chatbot,
         history=history,
-        system_prompt=knowledge
+        sys_prompt=knowledge
     )
     history.append(gpt_say)
     yield from update_ui(chatbot=chatbot, history=history)  # 刷新界面 # 界面更新
