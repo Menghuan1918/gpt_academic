@@ -47,6 +47,7 @@ def get_crazy_functions():
     from crazy_functions.Internet_GPT_Wrap import NetworkGPT_Wrap
     from crazy_functions.RAG_QA import RAG_QA_GEN
     from crazy_functions.Doc2x import doc2x
+    from crazy_functions.彩蛋 import eggs
 
     function_plugins = {
         # "虚空终端": {
@@ -69,6 +70,13 @@ def get_crazy_functions():
             "Info": "知识库回答 | 输入参数为问题",
             "Function": None,
             "Class": RAG_QA_GEN
+        },
+        "彩蛋":{
+            "Group": "对话",
+            "Color": "stop",
+            "AsButton": False,
+            "Info": "彩蛋",
+            "Function": HotReload(eggs),
         },
         # "载入对话历史存档（先上传存档或输入路径）": {
         #     "Group": "对话",

@@ -50,7 +50,7 @@ def main():
     from themes.theme import js_code_for_css_changing, js_code_for_toggle_darkmode, js_code_for_persistent_cookie_init
     from themes.theme import load_dynamic_theme, to_cookie_str, from_cookie_str, assign_user_uuid
     title_html = f"""<h1 align="center">
-<== See 'Help' for more<br>
+<== See 'Help' for more, for XMUM on-campus use only<br>
 DocScholar 0.0.3
 </h1>{theme_declaration}"""
 
