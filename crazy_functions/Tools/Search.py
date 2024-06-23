@@ -101,7 +101,6 @@ if __name__ == "__main__":
     # 构建一个Chroma对象
     directory = '/home/menghuan/Code/pdf/All'
     file_list = [os.path.join(directory, file) for file in os.listdir(directory)]
-    Config = read_config()
     db4 = docker_create(file_list, Config)
     query = "What should I do if I lost my student ID card?"
     docs = db4.similarity_search(query)

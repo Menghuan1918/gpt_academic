@@ -45,6 +45,7 @@ def get_crazy_functions():
     from crazy_functions.Latex_Function_Wrap import PDF_Localize
     from crazy_functions.Internet_GPT import 连接网络回答问题
     from crazy_functions.Internet_GPT_Wrap import NetworkGPT_Wrap
+    from crazy_functions.RAG_QA import 知识库回答
 
     function_plugins = {
         # "虚空终端": {
@@ -59,6 +60,13 @@ def get_crazy_functions():
             "AsButton": True,
             "Info": "解析一个Python项目的所有源文件(.py) | 输入参数为路径",
             "Function": HotReload(解析一个Python项目),
+        },
+        "Super QA\n知识库回答": {
+            "Group": "对话",
+            "Color": "stop",
+            "AsButton": True,
+            "Info": "知识库回答 | 输入参数为问题",
+            "Function": HotReload(知识库回答),
         },
         # "载入对话历史存档（先上传存档或输入路径）": {
         #     "Group": "对话",

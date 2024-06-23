@@ -1,3 +1,7 @@
+import logging
+from gradio_client import Client
+import os
+import json
 def Rerank_list(reranker, query, result_list, Config):
     """
     reranker: model，reranker模型
@@ -54,10 +58,8 @@ def Rerank_local(reranker, query, result_list, Config):
     return json.dumps(json_result, ensure_ascii=False, indent=2)
 
 
-def Rerank_HF(reranker, query, result_list, Config):
-    from gradio_client import Client
-    import os
-    import json
+def Rerank_HF(reranker, query_text, result_list, Config):
+
 
     os.environ["HUGGING_FACE_HUB_TOKEN"] = Config["huggingface_token"]
     client = Client("Menghuan1918/Rerank_test")
@@ -65,10 +67,19 @@ def Rerank_HF(reranker, query, result_list, Config):
         {"page_content": list.page_content, "metadata": list.metadata}
         for list in result_list
     ]
-    result = client.predict(
-        query=query,
-        result_list_json=json.dumps(temp),
-        top_k=Config["search_top_k"],
-        api_name="/predict",
-    )
-    return result
+    retry = 0
+    while True:
+        try:
+            result = client.predict(
+                query=query_text,
+                result_list_json=json.dumps(temp),
+                top_k=Config["search_top_k"],
+                api_name="/predict",
+            )
+            return result
+        except Exception as e:
+            if retry > 3:
+                raise e
+            logging.error(f"Error in Rerank_HF: {e}")
+            retry += 1
+            continue

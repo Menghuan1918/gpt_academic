@@ -75,3 +75,5 @@ def RAG_QA(query, history, Config, Prompt_mode=0):
 
     if Prompt_mode == 0:
         Prompt = RAG.format(lists=Related)
+    
+    return Prompt
