@@ -235,14 +235,14 @@ def get_crazy_functions():
             "Info": "翻译PDF文档为中文 | 输入参数为路径",
             "Function": HotReload(doc2x),
         },
-        # "查互联网后回答": {
-        #     "Group": "对话",
-        #     "Color": "stop",
-        #     "AsButton": True,  # 加入下拉菜单中
-        #     # "Info": "连接网络回答问题（需要访问谷歌）| 输入参数是一个问题",
-        #     "Function": HotReload(连接网络回答问题),
-        #     "Class": NetworkGPT_Wrap     # 新一代插件需要注册Class
-        # },
+        "查互联网后回答": {
+            "Group": "对话",
+            "Color": "stop",
+            "AsButton": True,  # 加入下拉菜单中
+            # "Info": "连接网络回答问题（需要访问谷歌）| 输入参数是一个问题",
+            "Function": HotReload(连接网络回答问题),
+            "Class": NetworkGPT_Wrap     # 新一代插件需要注册Class
+        },
         # "历史上的今天": {
         #     "Group": "对话",
         #     "Color": "stop",

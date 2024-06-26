@@ -25,6 +25,8 @@ class NetworkGPT_Wrap(GptAcademicPluginTemplate):
                 ArgProperty(title="输入问题", description="待通过互联网检索的问题", default_value="", type="string").model_dump_json(), # 主输入，自动从输入框同步
             "categories":
                 ArgProperty(title="搜索分类", options=["网页", "学术论文"], default_value="网页", description="无", type="dropdown").model_dump_json(),
+            "engine":
+                ArgProperty(title="选择搜索引擎", options=["bing", "google", "duckduckgo"], default_value="bing", description="无", type="dropdown").model_dump_json(),
             "searxng_url":
                 ArgProperty(title="Searxng服务地址", description="输入Searxng的地址", default_value=get_conf("SEARXNG_URL"), type="string").model_dump_json(), # 主输入，自动从输入框同步
 
@@ -39,4 +41,3 @@ class NetworkGPT_Wrap(GptAcademicPluginTemplate):
         if plugin_kwargs["categories"] == "学术论文": plugin_kwargs["categories"] = "science"
 
         yield from 连接网络回答问题(txt, llm_kwargs, plugin_kwargs, chatbot, history, system_prompt, user_request)
-
