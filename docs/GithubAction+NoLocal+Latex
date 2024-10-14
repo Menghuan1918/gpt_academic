@@ -16,7 +16,7 @@ RUN /root/.cargo/bin/uv venv --seed \
 
 # 可选步骤，用于预热模块
 RUN .venv/bin/python3 -c 'from check_proxy import warm_up_modules; warm_up_modules()'
-RUN update-alternatives --install /usr/bin/python3 python3 .venv/bin/python3 1 \
-    && update-alternatives --set python3 .venv/bin/python3
+RUN update-alternatives --install /usr/bin/python3 python3 /gpt/.venv/bin/python3 1 \
+    && update-alternatives --set python3 /gpt/.venv/bin/python3
 # 启动
 CMD [".venv/bin/python3", "-u", "main.py"]
